@@ -1,267 +1,142 @@
-@font-face {
-	font-family: 'La Belle Aurore';
-	font-style: normal;
-	font-weight: 400;
-	src: local('La Belle Aurore'), local('LaBelleAurore'), url(https://fonts.gstatic.com/s/labelleaurore/v8/RrQIbot8-mNYKnGNDkWlocovHeI4HO2E.woff2) format('woff2');
-	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+@charset "UTF-8";
+/* Base */
+html { font-family: "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif; font-size: 14px; line-height: 1.5; }
+body { background-color: rgb(245, 245, 245); color: rgb(0, 0, 0); }
+h1 { font-size: 100%; margin: 0; }
+img { vertical-align: middle; }
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+/* Page header */
+.page-header {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(230, 230, 230);
+    padding: 32px 0;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
 }
-
-body{
-	padding: 0;
-	margin: 0;
-	display: block;
-	min-width: 100%;
-	min-height: 100%;
-	background-color: #222222;
-	background: url(bodyBckg.jpg) left top repeat;
-	background-size: cover;
-	text-align: center;
+.page-header > .inner {
+    width: 950px;
+    padding: 8px 10px;
+    margin: auto;
 }
-
-.page{
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	grid-template-rows: repeat(12, 1fr);
-	min-height: 100vh;
+.site-logo {
+    float: left;
+    line-height: 1;
 }
-		/*=========page elements=========*/
-
-.header{
-	background-color: rgba(17,17,17,0.7);
-	grid-column: 1/13;
-	grid-row: 1/2;
-	position: sticky;
-	top: 0;
-	display: grid;
-	grid-template-columns: auto 1fr;
-	grid-template-rows: 1fr;
-	place-items: center;
-	text-shadow: 0px -5px 50px #6610f2;
-	box-shadow: -1px -1px 50px #6610f2;
+/*!
+ * Page main
+ */
+.page-main {
+    margin: auto;
+    padding: 103px 10px;
+    width: 950px;
 }
-.nav_bar_mobile{
-	display: grid;
-	background-color: rgba(17,17,17,0.7);
-	grid-column: 1/13;
-	grid-row: 2/3;
-	position: sticky;
-	top: 50px;
-	box-shadow: -1px -1px 50px #6610f2;
-	justify-content: stretch;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	font-size: 1em;
+/*!
+ * Gallery
+ */
+.gallery {
+    margin: 0;
+    padding: 0;
 }
-.side_bar{
-	grid-column: 1/2;
-	grid-row: 1/13;
-	background-color: rgba(17,17,17,0.7);
-	height: 100vh;
-	position: sticky;
-	top: 0;
-	display: grid;
-	grid-template-rows:  auto 1fr auto;
-	place-items: center;
-	box-shadow: -1px -1px 50px #6610f2;
+.gallery-item {
+    list-style: none;
+    margin-top: 10px;
 }
-.content_area{
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: auto;
+.gallery-item.is-loading {
+    opacity: 0;
 }
-.footer{
-	background-color: rgba(17,17,17,0.7);
-	grid-column: 1/13;
-	grid-row: 12/13;
-	position: sticky;
-	bottom: 0;
-	box-shadow: 0px -1px 50px #6610f2;
+.gallery-item a {
+    display: block;
+    /* 외부에 배치한 하위 요소 숨기기 */
+    overflow: hidden;
+    position: relative;
 }
-
-		/*=========header elements=========*/
-
-.logo {
-	background-color: black;
-	box-shadow: 0px 0px 40px #6610f2;
+.gallery-item .caption {
+    background-color: rgb(231, 31, 25);
+    background-color: rgba(231, 31, 25, 0.8);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    /* 부모 요소와 같은 크기로 캡션 영역 지정 */
+    width: 100%;
+    height: 100%;
+    /* 부모 요소의 영역의 외부 절대 위치 지정 */
+    position: absolute;
+    left: 100%;
+    top: 100%;
 }
-#toogle_button{
-	background-color: transparent;
-	border: 0;
-	color: #777777;
-	text-shadow: 0px -5px 50px #6610f2;
+.gallery-item .caption:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
 }
-
-.toogle_meniu{
-	font-size: 2em;
-	height: 100%;
-	place-self: center end;
-	justify-content: center;
-	padding-right: 20px;
-	padding-left: 20px;
-	padding-top: 10px;
+.gallery-item .caption > .inner {
+    display: inline-block;
+    vertical-align: middle;
 }
-
-		/*=========nav meniu elements=========*/
-
-.meniu_column{
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: repeat(5, 1fr);
-	grid-row-gap: 35px;
+.gallery-item .title {
+    display: block;
+    font-saptionize: 18px;
+    line-height: 1.17;
 }
-.meniu_flat{
-	display: grid;
-	grid-template-rows: 1fr;
-	grid-template-columns: repeat(5, 1fr);
-	grid-column-gap: 35px;
+.gallery-item .date {
+    display: block;
+    font-family: "Georgia", serif;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.75;
 }
-.social_column{
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: auto auto;
-	grid-row-gap: 15px;
-	padding-bottom: 15px;
+/* 필터 */
+.filter-form {
+    float: right;
 }
-.social_flat{
-	display: grid;
-	grid-template-columns: auto auto;
-	grid-template-rows: 1fr;
-	grid-column-gap: 25px;
-	padding: 10px;
-	place-content: end;
+.filter-form label {
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    margin-left: 1em;
+    padding: 0 0.25em;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
 }
-
-		/*=========content elements=========*/
-
-.text_zone{
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: auto;
-	align-self: center;
-	justify-self: start;
-	margin-left: 6%;
+.filter-form label.ui-state-focus {
+    outline: 1px dotted;
 }
-.text_area{
-	align-self: center;
-	justify-self: start;
-	margin-left: 6%;
+.filter-form label .ui-icon {
+    background: url(../img/sprites.png) no-repeat 0 0;
+    display: inline-block;
+    height: 17px;
+    margin-right: 0.5em;
+    margin-top: 2px;
+    width: 17px;
+    vertical-align: top;
 }
-
-
-.open_tag{
-	color: #4e555b;
-	font-size: 18px;
-	font-family: 'La Belle Aurore', cursive;
-	justify-self: start;
-	align-self: start;
+.filter-form label.ui-state-active .ui-icon {
+    background-position: -20px 0;
 }
-.open_tag:before{
-	content: '<';
+/* 추가 버튼 */
+.load-more {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(230, 230, 230);
+    display: block;
+    padding: 1em 0;
+    width: 100%;
+    margin-top: 10px;
 }
-.open_tag:after{
-	content: '>';
+/* jQuery UI helper */
+.ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
 }
-
-.close_tag{
-	color: #4e555b;
-	font-size: 18px;
-	font-family: 'La Belle Aurore', cursive;
-	justify-self: start;
-	align-self: end;
-}
-.close_tag:before{
-	content: '</';
-}
-.close_tag:after{
-	content: '>';
-}
-.close_tag.h1{
-	margin-bottom: 0;
-	margin-top: 0.5rem;
-}
-.open_tag.body{
-	margin-left: 3%;
-	margin-top: 3%;
-}
-.close_tag.body{
-	margin-left: 3%;
-	margin-bottom: 3%;
-}
-
-
-		/*=========class elements=========*/
-
-.nav_item{
-	color: #777777;
-	font-size: 1.5em;
-	display: grid;
-	grid-auto-rows: auto;
-	justify-items: center;
-	align-items: center;
-	position: relative;
-	text-align: center;
-	text-shadow: 0px -5px 50px #6610f2;
-}
-.logo_item{
-	-webkit-text-fill-color: #00FFFF;
-}
-
-		/*=========transitions=========*/
-
-.social_column .nav_item,
-.social_flat .nav_item{
-	font-size: 1.25em;
-}
-.nav_item.active{
-	-webkit-text-fill-color: #00FFFF;
-	text-decoration: none;
-}
-.nav_item:hover{
-	-webkit-text-fill-color: #00FFFF;
-	text-decoration: none;
-
-}
-.nav_item i{
-	-webkit-transition: all 0.5s ease-out;
-	transition: all 0.5s ease-out;
-}
-.nav_item:hover i{
-	opacity: 0;
-}
-.nav_item:hover:after{
-	opacity: 1;
-}
-.nav_item:after{
-	content: attr(data-hover);
-	font-size: 12px;
-	letter-spacing: 2px;
-	color: #00FFFF;
-	position: absolute;
-	display: block;
-	opacity: 0;
-	-webkit-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
-}
-
-
-
-      /*=====-----<Home Page Content>-----=====*/
-
-#homePageContent .text_area h1{
-	display: grid;
-	grid-template-rows: auto auto auto;
-	font-size: 73px;
-	color: #fff;
-	line-height: 67px;
-	font-family: Sans-serif;
-	font-weight: bold;
-	margin: 0 auto;
-}
-#homePageContent .text_area h1 p{
-	display: grid;
-	grid-auto-flow: column;
-	justify-content: start;
-	margin: 0;
-}
-
-
